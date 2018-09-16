@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Find the most changed files in the current directory and it's subdirectories.
+# The script tracks renames, and only shows currently existing files.
+#
+# It accepts git-log arguments, for example --since="1 week ago"
+
+arg=$1
+git ls-files |
+while read filename
+do
+  set $(git log --follow --oneline "$arg" "$filename" | wc)
+  printf '%s\t%s\n' $1 "$filename"
+done | sort -n | grep -v ^0 | cat
+
