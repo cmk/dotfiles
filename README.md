@@ -4,7 +4,7 @@ My dotfiles.
 ## install
 
 ```sh
-git clone https://github.com/dodie/dotfiles.git ~/.dotfiles
+git clone https://github.com/cmk/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
 ```
