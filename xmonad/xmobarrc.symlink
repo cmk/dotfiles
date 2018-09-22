@@ -26,10 +26,9 @@ Config {
                              ] 50
         , Run StdinReader
         , Run Com ".dotfiles/xmonad/wireless.sh" [] "wifi" 30
-        , Run Com ".dotfiles/xmonad/getvolume.sh" [] "volume" 2
         , Run Date "%a %b %_d %Y %H:%M" "date" 10
         ],
     sepChar      = "%",
     alignSep     = "}{",
-    template     = "%StdinReader% }{ %cpu% | %battery% | <action=`.dotfiles/xmonad/netmon.sh`></action> <fc=#ffffff>%wifi%</fc> | <fc=#ffffff>%volume%</fc> | %date%"
+    template     = "%StdinReader% }{ %cpu% | %battery% | <action=`.dotfiles/xmonad/netmon.sh`></action> <fc=#ffffff>%wifi%</fc> | %date%"
 }
