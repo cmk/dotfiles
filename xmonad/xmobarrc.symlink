@@ -1,20 +1,35 @@
-Config { font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*"
-        , borderColor = "black"
-        , bgColor = "black"
-        , fgColor = "grey"
-        , position = TopW L 100
-        , iconRoot = ".dotfiles/xmonad/resources"
-        , commands = [ Run Battery ["-t","<left>% / <timeleft>","-L","30","-H","60","-h","green","-n","yellow","-l","red"] 10
-                        , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-                        , Run Memory ["-t","Mem: <usedratio>%"] 10
-                        , Run Swap [] 10
-                        , Run Date "%A %Y %B %_d." "date" 10
-                        , Run Date "%H:%M" "time" 10
-                        , Run Com ".dotfiles/xmonad/wireless.sh" [] "wifi" 30
-                        , Run Com ".dotfiles/xmonad/getvolume.sh" [] "volume" 2
-                        , Run StdinReader
-                        ]
-        , sepChar = "%"
-        , alignSep = "}{"
-        , template = "%StdinReader% } <action=`gsimplecal`>%date%</action> <fc=#ffffff>%time%</fc> { %cpu% | %battery% | <action=`.dotfiles/xmonad/netmon.sh`><icon=network-icon_24.xpm/></action> <action=`kde5-nm-connection-editor`>%wifi%</action> | <fc=#ffffff>%volume%</fc> "
-        }
+Config {
+    font         = "xft:SourceCodePro:pixelsize=12,-*-*-*-r-*-*-28-*-*-*-*-*-*-*",
+    bgColor      = "#272822",
+    fgColor      = "#f8f8f0",
+    position     = TopSize C 100 26,
+    iconRoot = ".dotfiles/xmonad/resources",
+    lowerOnStart = True,
+    commands     = [
+          Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+        , Run Memory ["-t","Mem: <usedratio>%"] 10
+        , Run Swap [] 10
+        , Run Battery        [ "--template" , "Batt: <acstatus>"
+                             , "--Low"      , "10"        -- units: %
+                             , "--High"     , "80"        -- units: %
+                             , "--low"      , "darkred"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "green"
+
+                             , "--" -- battery specific options
+                                       -- discharging status
+                                       , "-o"   , "<left>% (<timeleft>)"
+                                       -- AC "on" status
+                                       , "-O"   , "<fc=#dAA520>Charging</fc>"
+                                       -- charged status
+                                       , "-i"   , "<fc=#006000>Charged</fc>"
+                             ] 50
+        , Run StdinReader
+        , Run Com ".dotfiles/xmonad/wireless.sh" [] "wifi" 30
+        , Run Com ".dotfiles/xmonad/getvolume.sh" [] "volume" 2
+        , Run Date "%a %b %_d %Y %H:%M" "date" 10
+        ],
+    sepChar      = "%",
+    alignSep     = "}{",
+    template     = "%StdinReader% }{ %cpu% | %battery% | <action=`.dotfiles/xmonad/netmon.sh`><icon=network-icon_24.xpm/></action> <action=`kde5-nm-connection-editor`>%wifi%</action> | <fc=#ffffff>%volume%</fc> | %date%"
+}
