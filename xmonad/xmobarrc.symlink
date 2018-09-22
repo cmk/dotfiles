@@ -31,5 +31,5 @@ Config {
         ],
     sepChar      = "%",
     alignSep     = "}{",
-    template     = "%StdinReader% }{ %cpu% | %battery% | <action=`.dotfiles/xmonad/netmon.sh`><icon=network-icon_24.xpm/></action> <action=`kde5-nm-connection-editor`>%wifi%</action> | <fc=#ffffff>%volume%</fc> | %date%"
+    template     = "%StdinReader% }{ %cpu% | %battery% | <action=`.dotfiles/xmonad/netmon.sh`></action> <action=`kde5-nm-connection-editor`>%wifi%</action> | <fc=#ffffff>%volume%</fc> | %date%"
 }
